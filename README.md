@@ -14,9 +14,10 @@ I prepared a seeder so that you can run php artisan migrate --seed before testin
 5) For choosing a period of time added datepicker.
 
 ## Bonus - speed up the loading
-1) We can eliminate the table 'callables', and in 'call' table add agent_id, customer_id instead of caller_id and called_id, and the direction of call (if customers can also call). Table loading will be faster, BUT it will close this table for extensions (we will not be able to add another entities).
-2) We can add an index by agent name if we need to search by agent name often. BUT it will slow down adding new agents.
-3) We can replace eloquent methods with almost raw sql-request like DB::raw("select .. join... limit... offset..."). This will be faster, because now we take 5 sql-request to database, and DB::raw will do only one. BUT this code maybe will be hard to maintain in the future. Also, if we decide to create raw sql-request, we can hide part of the request in view. 
+1) We can eliminate the table 'callables', and in 'call' table add agent_id, customer_id instead of caller_id and called_id, and the direction of call (if customers can also call). Table loading will be faster, __BUT__ it will close this table for extensions (we will not be able to add another entities).
+2) We can add an index by agent name if we need to search by agent name often. __BUT__ it will slow down adding new agents.
+3) We can replace eloquent methods with almost raw sql-request like DB::raw("select .. join... limit... offset..."). This will be faster, because now we take 5 sql-request to database, and DB::raw will do only one. __BUT__ this code maybe will be hard to maintain in the future. Also, if we decide to create raw sql-request, we can hide part of the request in view. 
+![alt text](image.png)
 
 ## TO DO
 1) I would add CallTableResource to simplify the outcoming data, but I've stuck a little bit with how the blade works with the resource, as I usually do not use blades, but I'm 100% sure it could be done.
